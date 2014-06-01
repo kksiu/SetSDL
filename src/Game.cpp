@@ -41,7 +41,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
                 
                 // TODO ADD MENU STATE MACHINE
                 //for now, going to go into play state
-                m_pGameStateMachine->pushState(new PlayState());
+                m_pGameStateMachine->changeState(new PlayState());
                 
             } else {
                 std::cout << "renderer init fail\n";
@@ -102,7 +102,7 @@ void Game::clean() {
         m_gameObjects[i]->clean();
     }
     
-    std::cout << "cleaning and exiting game\n";
+    isRunning = false;
     SDL_DestroyWindow(m_pWindow);
     SDL_DestroyRenderer(m_pRenderer);
     SDL_Quit();

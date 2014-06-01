@@ -32,6 +32,7 @@ public:
     
     //function to load all the cards
     void loadCards();
+    void removeTextures();
     
 private:
     static const std::string s_menuID;
