@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
 	//get start frame and fame time
 	Uint32 frameStart, frameTime;
     
-    if(Game::Instance()->init("Multiplayer Set!", 0, 0, 1400, 900, false))
+    if(Game::Instance()->init("Multiplayer Set!", 100, 100, 960, 540, false))
     {
         std::cout << "game init success!" << std::endl;
         while(Game::Instance()->running())

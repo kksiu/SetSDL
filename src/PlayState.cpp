@@ -31,7 +31,7 @@ bool PlayState::onEnter() {
     PlayState::loadCards();
     
     //make a temporary card
-    CardObject *card = new CardObject(new LoaderParams(0, 0, 1400, 900, "gfx/Image-card_1_oct_empty_blue.png"), color::BLUE, shading::EMPTY, number::ONE, shape::OCTAGON);
+    CardObject *card = new CardObject(new LoaderParams(0, 0, 140, 90, "gfx/Image-card_1_oct_empty_blue.png"), color::BLUE, shading::EMPTY, number::ONE, shape::OCTAGON);
     
     m_gameObjects.push_back(card);
     
