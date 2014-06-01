@@ -12,7 +12,7 @@
 #include <string>
 
 //thank you sublime and ls
-std::string images[] = {"gfx/Image-card_1_oct_empty_blue.png",
+const std::string images[] = {"gfx/Image-card_1_oct_empty_blue.png",
     "gfx/Image-card_1_oct_empty_green.png",
     "gfx/Image-card_1_oct_empty_red.png",
     "gfx/Image-card_1_oct_filled_blue.png",
@@ -94,5 +94,14 @@ std::string images[] = {"gfx/Image-card_1_oct_empty_blue.png",
     "gfx/Image-card_3_triangle_grad_green.png",
     "gfx/Image-card_3_triangle_grad_red.png",
     "gfx/Image-card_base.png"};
+
+const std::string menuButtons[] = {"gfx/MButton-Instructions.png",
+    "gfx/MButton-MultiPlayer.png",
+    "gfx/MButton-Quit.png",
+    "gfx/MButton-Settings.png",
+    "gfx/MButton-SinglePlayer.png"};
+
+const int WIDTH = 960;
+const int HEIGHT = 540;
 
 #endif

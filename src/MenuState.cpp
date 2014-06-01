@@ -7,6 +7,9 @@
 //
 
 #include "MenuState.h"
+#include "Constants.h"
+#include "Game.h"
+#include "MenuButton.h"
 
 const std::string MenuState::s_menuID = "MENU";
 
@@ -25,8 +28,15 @@ void MenuState::render() {
 }
 
 bool MenuState::onEnter() {
-    //load buttons
+    for(const std::string *p = &menuButtons[0]; p != &menuButtons[4]; ++p) {
+        if(TextureManager::Instance()->load(*p, *p, Game::Instance()->getRenderer())) {
+            std::cout << "Failed to load menu buttons" << std::endl;
+            return false;
+        }
+    }
     
+    //now load them onto the screen
+    //GameObject *object = new MenuButton(new LoaderParams(), NULL);
     
     std::cout << "Entering Menu State" << std::endl;
     return true;
@@ -44,3 +54,25 @@ bool MenuState::onExit() {
     
     return true;
 }
+
+void MenuState::playSingleButton() {
+    
+}
+
+void MenuState::playMultiButton() {
+    
+}
+
+void MenuState::settingsButton() {
+    
+}
+
+void MenuState::instructionButton() {
+    
+}
+
+void MenuState::exitButton() {
+    
+}
+
+

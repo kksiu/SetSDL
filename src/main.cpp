@@ -2,7 +2,7 @@
 #include <iostream>
 #include "SDL.h"
 #include "Game.h"
-#include "Settings.h"
+#include "Constants.h"
 
 //fixed FPS
 const int FPS = 60;

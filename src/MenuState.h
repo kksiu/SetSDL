@@ -33,6 +33,13 @@ private:
     static const std::string s_menuID;
     std::vector<GameObject*> m_gameObjects;
     
+    //functions for the button
+    static void playSingleButton();
+    static void playMultiButton();
+    static void settingsButton();
+    static void instructionButton();
+    static void exitButton();
+    
 };
 
 #endif /* defined(__MenuState__) */

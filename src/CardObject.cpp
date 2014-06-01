@@ -22,8 +22,6 @@ void CardObject::draw() {
 
 void CardObject::update() {
     //update
-	Vector2D pMousePos = InputHandler::Instance()->getMousePosition();
-
 	if (this->isMouseInBounds()) {
 		// mouse interior to card
 

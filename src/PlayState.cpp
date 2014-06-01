@@ -62,7 +62,7 @@ bool PlayState::onExit() {
 
 bool PlayState::loadCards() {
     //have to load all images
-    for(std::string* p = &images[0]; p != &images[81]; ++p) {
+    for(const std::string* p = &images[0]; p != &images[81]; ++p) {
         if(TextureManager::Instance()->load(*p, *p, Game::Instance()->getRenderer())) {
             std::cout << "FAILED" << std::endl;
             return false;
