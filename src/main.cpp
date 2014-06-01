@@ -2,6 +2,7 @@
 #include <iostream>
 #include "SDL.h"
 #include "Game.h"
+#include "Settings.h"
 
 //fixed FPS
 const int FPS = 60;
@@ -12,7 +13,7 @@ int main(int argc, char *argv[]) {
 	//get start frame and fame time
 	Uint32 frameStart, frameTime;
     
-    if(Game::Instance()->init("Multiplayer Set!", 100, 100, 960, 540, false))
+    if(Game::Instance()->init("Multiplayer Set!", 100, 100, WIDTH, HEIGHT, false))
     {
         std::cout << "game init success!" << std::endl;
         while(Game::Instance()->running())

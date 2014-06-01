@@ -6,8 +6,8 @@
 //
 //
 
-#ifndef SetSDL_Constants_h
-#define SetSDL_Constants_h
+#ifndef __Constants__
+#define __Constants__
 
 #include <string>
 
@@ -94,6 +94,5 @@ std::string images[] = {"gfx/Image-card_1_oct_empty_blue.png",
     "gfx/Image-card_3_triangle_grad_green.png",
     "gfx/Image-card_3_triangle_grad_red.png",
     "gfx/Image-card_base.png"};
-
 
 #endif
