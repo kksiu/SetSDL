@@ -24,9 +24,16 @@ void CardObject::update() {
     //update
 	Vector2D pMousePos = InputHandler::Instance()->getMousePosition();
 
-	this->m_position.setX(pMousePos.getX());
-	this->m_position.setY(pMousePos.getY());
-    
+	if (this->isMouseInBounds()) {
+		// mouse interior to card
+
+		this->m_position.setX(this->m_position.getX() + 1);
+	}
+	else {
+		// mouse exterior
+
+	}
+
     SDLGameObject::update();
 
 }

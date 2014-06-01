@@ -8,6 +8,7 @@
 
 #include "SDLGameObject.h"
 #include "Game.h"
+#include "InputHandler.h"
 
 SDLGameObject::SDLGameObject(const LoaderParams* pParams) :
 GameObject(pParams), m_position(pParams->getX(), pParams->getY()), m_velocity(0, 0), m_acceleration(0, 0)
@@ -26,4 +27,11 @@ void SDLGameObject::draw()
 }
 
 void SDLGameObject::update() {
+}
+
+bool SDLGameObject::isMouseInBounds() {
+	Vector2D pMousePos = InputHandler::Instance()->getMousePosition();
+
+	return (pMousePos.getX() > this->m_position.getX() && pMousePos.getX() < this->m_position.getX() + this->getWidth() &&
+		pMousePos.getY() > this->m_position.getY() && pMousePos.getY() < this->m_position.getY() + this->getHeight());
 }

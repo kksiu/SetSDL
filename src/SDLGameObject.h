@@ -22,6 +22,7 @@ public:
     virtual void draw();
 	virtual void update();
     virtual void clean() {}
+	virtual bool isMouseInBounds();
 
 	Vector2D getPosition() { return m_position; }
 
