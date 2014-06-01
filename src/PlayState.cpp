@@ -10,11 +10,16 @@
 #include "Constants.h"
 #include "Game.h"
 #include "Enums.h"
+#include "InputHandler.h"
 
 const std::string PlayState::s_menuID = "PLAY";
 
 
 void PlayState::update() {
+
+	for (int i = 0; i < m_gameObjects.size(); i++) {
+		m_gameObjects[i]->update();
+	}
     // TODO logic to update the cards selected
 }
 
