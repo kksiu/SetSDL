@@ -11,9 +11,9 @@
 
 #include <iostream>
 #include <vector>
-#include "CardObject.h"
 #include "GameState.h"
 
+class GameObject;
 
 class PlayState : public GameState {
 public:

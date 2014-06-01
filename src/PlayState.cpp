@@ -11,6 +11,7 @@
 #include "Game.h"
 #include "Enums.h"
 #include "InputHandler.h"
+#include "CardObject.h"
 
 const std::string PlayState::s_menuID = "PLAY";
 
@@ -18,7 +19,7 @@ const std::string PlayState::s_menuID = "PLAY";
 void PlayState::update() {
 
 	for (int i = 0; i < m_gameObjects.size(); i++) {
-		m_gameObjects[i]->update();
+		((CardObject*)m_gameObjects[i])->update();
 	}
     // TODO logic to update the cards selected
 }
@@ -36,7 +37,7 @@ bool PlayState::onEnter() {
     PlayState::loadCards();
     
     //make a temporary card
-    CardObject *card = new CardObject(new LoaderParams(0, 0, 140, 90, "gfx/Image-card_1_oct_empty_blue.png"), color::BLUE, shading::EMPTY, number::ONE, shape::OCTAGON);
+    GameObject *card = new CardObject(new LoaderParams(0, 0, 140, 90, "gfx/Image-card_1_oct_empty_blue.png"), color::BLUE, shading::EMPTY, number::ONE, shape::OCTAGON);
     
     m_gameObjects.push_back(card);
     

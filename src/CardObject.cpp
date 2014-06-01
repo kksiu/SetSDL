@@ -20,14 +20,14 @@ void CardObject::draw() {
     SDLGameObject::draw();
 }
 
-void CardObject::udpate() {
+void CardObject::update() {
     //update
-    SDLGameObject::update();
-
 	Vector2D pMousePos = InputHandler::Instance()->getMousePosition();
 
 	this->m_position.setX(pMousePos.getX());
 	this->m_position.setY(pMousePos.getY());
+    
+    SDLGameObject::update();
 
 }
 

@@ -18,7 +18,7 @@ class CardObject : public SDLGameObject {
 public:
     CardObject(const LoaderParams *pParams, color t_color, shading t_shading, number t_number, shape t_shape);
     virtual void draw();
-    virtual void udpate();
+    virtual void update();
     virtual void clean();
     void setSelected(bool selected);
     
