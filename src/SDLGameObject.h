@@ -33,7 +33,7 @@ protected:
     int m_width;
     int m_height;
     int m_currentRow;
-    button_state m_currentFrame;
+    int m_currentFrame;
     std::string m_textureID;
 	Vector2D m_position;
 	Vector2D m_velocity;

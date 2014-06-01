@@ -18,7 +18,7 @@ GameObject(pParams), m_position(pParams->getX(), pParams->getY()), m_velocity(0,
 
     m_textureID = pParams->getTextureID();
     m_currentRow = 1;
-    m_currentFrame = button_state::MOUSE_OUT;
+    m_currentFrame = (int)button_state::MOUSE_OUT;
 }
 
 void SDLGameObject::draw()

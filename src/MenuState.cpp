@@ -16,7 +16,7 @@ const std::string MenuState::s_menuID = "MENU";
 void MenuState::update() {
     //update the game objects
     for(int i = 0; i < m_gameObjects.size(); i++) {
-        m_gameObjects[i]->draw();
+        m_gameObjects[i]->update();
     }
 }
 
@@ -28,15 +28,21 @@ void MenuState::render() {
 }
 
 bool MenuState::onEnter() {
-    for(const std::string *p = &menuButtons[0]; p != &menuButtons[4]; ++p) {
-        if(TextureManager::Instance()->load(*p, *p, Game::Instance()->getRenderer())) {
-            std::cout << "Failed to load menu buttons" << std::endl;
-            return false;
-        }
-    }
+//    for(const std::string *p = &menuButtons[0]; p != &menuButtons[4]; ++p) {
+//        if(!TextureManager::Instance()->load(*p, *p, Game::Instance()->getRenderer())) {
+//            std::cout << "Failed to load menu buttons" << std::endl;
+//            return false;
+//        }
+//    }
+    
+    if (!TheTextureManager::Instance()->load("gfx/MButton-MultiPlayer.png", "playbutton", Game::Instance()->getRenderer())) {
+		return false;
+	}
     
     //now load them onto the screen
-    //GameObject *object = new MenuButton(new LoaderParams(), NULL);
+    GameObject *singleButton = new MenuButton(new LoaderParams(400, 400, 400, 400, "playButton"), playSingleButton);
+    
+    m_gameObjects.push_back(singleButton);
     
     std::cout << "Entering Menu State" << std::endl;
     return true;
