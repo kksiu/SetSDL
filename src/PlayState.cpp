@@ -19,7 +19,7 @@ const std::string PlayState::s_menuID = "PLAY";
 void PlayState::update() {
 
 	for (int i = 0; i < m_gameObjects.size(); i++) {
-		((CardObject*)m_gameObjects[i])->update();
+		m_gameObjects[i]->update();
 	}
     // TODO logic to update the cards selected
 }

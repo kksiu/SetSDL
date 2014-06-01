@@ -11,7 +11,10 @@
 const std::string MenuState::s_menuID = "MENU";
 
 void MenuState::update() {
-    // TODO logic to update the buttons
+    //update the game objects
+    for(int i = 0; i < m_gameObjects.size(); i++) {
+        m_gameObjects[i]->draw();
+    }
 }
 
 void MenuState::render() {
