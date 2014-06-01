@@ -12,9 +12,9 @@ int main(int argc, char *argv[]) {
 	//get start frame and fame time
 	Uint32 frameStart, frameTime;
     
-    if(Game::Instance()->init("Multiplayer Set!", 100, 100, 640, 480, false))
+    if(Game::Instance()->init("Multiplayer Set!", 0, 0, 1400, 900, false))
     {
-        std::cout << "game init success!\n";
+        std::cout << "game init success!" << std::endl;
         while(Game::Instance()->running())
         {
 			//get initial frame ticks
@@ -32,10 +32,10 @@ int main(int argc, char *argv[]) {
 			}
         }
     } else {
-        std::cout << "game init failure - " << SDL_GetError() << "\n";
+        std::cout << "game init failure - " << SDL_GetError() << std::endl;
     }
     
-	std::cout << "game closing...\n";
+	std::cout << "game closing..." << std::endl;
     Game::Instance()->clean();
     
 	// Body of the program goes here.

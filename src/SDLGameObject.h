@@ -12,6 +12,7 @@
 #include <iostream>
 #include "Vector2D.h"
 #include "GameObject.h"
+#include "Enums.h"
 
 class SDLGameObject : public GameObject
 {
@@ -31,7 +32,7 @@ protected:
     int m_width;
     int m_height;
     int m_currentRow;
-    int m_currentFrame;
+    button_state m_currentFrame;
     std::string m_textureID;
 	Vector2D m_position;
 	Vector2D m_velocity;

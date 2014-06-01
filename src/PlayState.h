@@ -31,7 +31,7 @@ public:
     virtual std::string getStateID() const {return s_menuID;}
     
     //function to load all the cards
-    void loadCards();
+    bool loadCards();
     void removeTextures();
     
 private:

@@ -7,6 +7,9 @@
 //
 
 #include "PlayState.h"
+#include "Constants.h"
+#include "Game.h"
+#include "Enums.h"
 
 const std::string PlayState::s_menuID = "PLAY";
 
@@ -27,7 +30,12 @@ bool PlayState::onEnter() {
     //load all the cards
     PlayState::loadCards();
     
-    std::cout << "Entering Play State\n";
+    //make a temporary card
+    CardObject *card = new CardObject(new LoaderParams(0, 0, 1400, 900, "gfx/Image-card_1_oct_empty_blue.png"), color::BLUE, shading::EMPTY, number::ONE, shape::OCTAGON);
+    
+    m_gameObjects.push_back(card);
+    
+    std::cout << "Entering Play State" << std::endl;
     return true;
 }
 
@@ -42,12 +50,22 @@ bool PlayState::onExit() {
     
     removeTextures();
     
-    std::cout << "Exiting Play State\n";
+    std::cout << "Exiting Play State" << std::endl;
     return true;
 }
 
-void PlayState::loadCards() {
-    //have to load
+bool PlayState::loadCards() {
+    //have to load all images
+    for(std::string* p = &images[0]; p != &images[81]; ++p) {
+        if(TextureManager::Instance()->load(*p, *p, Game::Instance()->getRenderer())) {
+            std::cout << "FAILED" << std::endl;
+            return false;
+        }
+    }
+    
+    
+    std::cout << "All Images Loaded" << std::endl;
+    return true;
 }
 
 void PlayState::removeTextures() {
