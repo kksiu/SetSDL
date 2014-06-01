@@ -8,6 +8,7 @@
 
 #include "Game.h"
 #include "InputHandler.h"
+#include "PlayState.h"
 
 Game *Game::s_pInstance = 0;
 
@@ -39,6 +40,8 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
                 m_pGameStateMachine = new GameStateMachine();
                 
                 // TODO ADD MENU STATE MACHINE
+                //for now, going to go into play state
+                m_pGameStateMachine->pushState(new PlayState());
                 
             } else {
                 std::cout << "renderer init fail\n";
