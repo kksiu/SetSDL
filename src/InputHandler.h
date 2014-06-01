@@ -14,8 +14,6 @@ enum mouse_buttons
 	RIGHT = 2
 };
 
-const int m_joystickDeadZone = 10000;
-
 class InputHandler {
 public:
 	InputHandler() : m_mousePosition(0, 0) {}
