@@ -31,10 +31,10 @@ void MenuButton::update() {
 		}
 		else if (!InputHandler::Instance()->getMouseButtonState(LEFT)) {
 			m_bReleased = true;
-			m_currentFrame = (int)button_state::MOUSE_OVER;
+			m_currentFrame = (int)button_state::CLICKED;
 		}
 		else {
-			m_currentFrame = (int)button_state::MOUSE_OUT;
+			m_currentFrame = (int)button_state::MOUSE_OVER;
 		}
 	}
 	else {
