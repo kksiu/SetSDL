@@ -12,6 +12,7 @@
 #include "MenuButton.h"
 
 const std::string MenuState::s_menuID = "MENU";
+const int BUTTON_PADDING = 100;
 
 void MenuState::update() {
     //update the game objects
@@ -56,9 +57,15 @@ bool MenuState::onEnter() {
 	}
 
     //now load them onto the screen
-    GameObject *singleButton = new MenuButton(new LoaderParams(400, 400, 400, 100, "singlebutton"), playSingleButton);
+    GameObject *singleButton = new MenuButton(new LoaderParams((WIDTH / 2) - (BUTTON_WIDTH / 2), BUTTON_PADDING, BUTTON_WIDTH, BUTTON_HEIGHT, "singlebutton"), playSingleButton);
+	GameObject *multiButton = new MenuButton(new LoaderParams((WIDTH / 2) - (BUTTON_WIDTH / 2), (2 * BUTTON_PADDING) + BUTTON_HEIGHT, BUTTON_WIDTH, BUTTON_HEIGHT, "multibutton"), playMultiButton);
+	GameObject *settingButton = new MenuButton(new LoaderParams(WIDTH - BUTTON_WIDTH - BUTTON_PADDING, (3 * BUTTON_PADDING) + (2 * BUTTON_HEIGHT), BUTTON_WIDTH, BUTTON_HEIGHT, "settingbutton"), settingsButton);
+	GameObject *instrButton = new MenuButton(new LoaderParams(BUTTON_PADDING, (3 * BUTTON_PADDING) + (2 * BUTTON_HEIGHT), BUTTON_WIDTH, BUTTON_HEIGHT, "instrbutton"), instructionButton);
     
     m_gameObjects.push_back(singleButton);
+	m_gameObjects.push_back(multiButton);
+	m_gameObjects.push_back(settingButton);
+	m_gameObjects.push_back(instrButton);
     
     std::cout << "Entering Menu State" << std::endl;
     return true;
@@ -92,9 +99,4 @@ void MenuState::settingsButton() {
 void MenuState::instructionButton() {
     
 }
-
-void MenuState::exitButton() {
-    
-}
-
 

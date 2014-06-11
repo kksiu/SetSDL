@@ -35,7 +35,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
             if(m_pRenderer != 0) {
                 std::cout << "renderer creation success" << std::endl;
                 
-                SDL_SetRenderDrawColor(m_pRenderer, 0, 0, 0, 255);
+                SDL_SetRenderDrawColor(m_pRenderer, 255, 255, 255, 255);
                 
                 //State machine
                 m_pGameStateMachine = new GameStateMachine();
