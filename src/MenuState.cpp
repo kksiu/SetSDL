@@ -10,6 +10,8 @@
 #include "Constants.h"
 #include "Game.h"
 #include "MenuButton.h"
+#include "TextureManager.h"
+#include "PlayState.h"
 
 const std::string MenuState::s_menuID = "MENU";
 const int BUTTON_PADDING = 100;
@@ -29,13 +31,6 @@ void MenuState::render() {
 }
 
 bool MenuState::onEnter() {
-	//    for(const std::string *p = &menuButtons[0]; p != &menuButtons[4]; ++p) {
-	//        if(!TextureManager::Instance()->load(*p, *p, Game::Instance()->getRenderer())) {
-	//            std::cout << "Failed to load menu buttons" << std::endl;
-	//            return false;
-	//        }
-	//    }
-
 	if (!TheTextureManager::Instance()->load("gfx/MButton-MultiPlayer.png", "multibutton", Game::Instance()->getRenderer())) {
 		return false;
 	}
@@ -79,13 +74,21 @@ bool MenuState::onExit() {
     
     m_gameObjects.clear();
     
+    //clear textures
+    TextureManager::Instance()->clearFromTextureMap("singlebutton");
+    TextureManager::Instance()->clearFromTextureMap("multibutton");
+    TextureManager::Instance()->clearFromTextureMap("settingbutton");
+    TextureManager::Instance()->clearFromTextureMap("instrubutton");
+
+    
+    
     std::cout << "Exiting Play State" << std::endl;
     
     return true;
 }
 
 void MenuState::playSingleButton() {
-    
+    Game::Instance()->getStateMachine()->pushState(new PlayState());
 }
 
 void MenuState::playMultiButton() {
