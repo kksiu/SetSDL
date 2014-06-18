@@ -18,7 +18,7 @@ const std::string PlayState::s_menuID = "PLAY";
 
 void PlayState::update() {
 
-	for (int i = 0; i < m_gameObjects.size(); i++) {
+	for (size_t i = 0; i < m_gameObjects.size(); i++) {
 		m_gameObjects[i]->update();
 	}
     // TODO logic to update the cards selected
@@ -26,7 +26,7 @@ void PlayState::update() {
 
 void PlayState::render() {
     //render all the objects
-    for(int i = 0; i < m_gameObjects.size(); i++) {
+    for(size_t i = 0; i < m_gameObjects.size(); i++) {
         m_gameObjects[i]->draw();
     }
 }
@@ -48,7 +48,7 @@ bool PlayState::onEnter() {
 
 bool PlayState::onExit() {
     //remove all the cards (using the onExit)
-    for(int i = 0; i < m_gameObjects.size(); i++) {
+    for(size_t i = 0; i < m_gameObjects.size(); i++) {
         m_gameObjects[i]->clean();
     }
     

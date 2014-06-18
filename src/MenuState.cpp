@@ -18,14 +18,14 @@ const int BUTTON_PADDING = 100;
 
 void MenuState::update() {
     //update the game objects
-    for(int i = 0; i < m_gameObjects.size(); i++) {
+    for(size_t i = 0; i < m_gameObjects.size(); i++) {
         m_gameObjects[i]->update();
     }
 }
 
 void MenuState::render() {
     //render the objects
-    for(int i = 0; i < m_gameObjects.size(); i++) {
+    for(size_t i = 0; i < m_gameObjects.size(); i++) {
         m_gameObjects[i]->draw();
     }
 }
@@ -68,7 +68,7 @@ bool MenuState::onEnter() {
 
 bool MenuState::onExit() {
     //remove all buttons
-    for(int i = 0; i < m_gameObjects.size(); i++) {
+    for(size_t i = 0; i < m_gameObjects.size(); i++) {
         m_gameObjects[i]->clean();
     }
     
