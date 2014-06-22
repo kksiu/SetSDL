@@ -11,7 +11,6 @@
 #include "Game.h"
 #include "Enums.h"
 #include "InputHandler.h"
-#include "CardObject.h"
 #include <sstream>
 #include <string>
 #include <cstdlib>
@@ -41,11 +40,36 @@ std::vector<std::string> split(const std::string &s, char delim) {
 
 
 void PlayState::update() {
-
+    
+    std::vector<CardObject*> selectedCards;
+    
 	for (size_t i = 0; i < m_gameObjects.size(); i++) {
 		m_gameObjects[i]->update();
+        
+        //check if it has been selected
+        CardObject *card = (CardObject*)m_gameObjects[i];
+        if(card->getSelected()) {
+            selectedCards.push_back(card);
+        }
 	}
-    // TODO logic to update the cards selected
+    
+    //check to see if there are at least 3 cards that have been selected
+    if(selectedCards.size() >= 3) {
+        //check to see if the cards are a set
+        bool isSet = PlayState::checkSet(selectedCards);
+        
+        // TODO what to do when there is a set!
+        if(isSet) {
+        }
+        
+        //set selected cards back to not selected
+        for(size_t i = 0; i < selectedCards.size(); i++) {
+            selectedCards[i]->setSelected(false);
+        }
+    }
+    
+    //remove vector
+    selectedCards.clear();
 }
 
 void PlayState::render() {
@@ -183,4 +207,76 @@ void PlayState::loadRandomInitialCards() {
         sizeOfCardArray--;
     }
     
+}
+
+bool PlayState::checkSet(std::vector<CardObject*> selectedCards) {
+    //check to see if there are 3 cards in the set
+    if(selectedCards.size() < 3) {
+        return false;
+    }
+    
+    //check color
+    bool colorSame = false;
+    if((selectedCards[0]->getColor() == selectedCards[1]->getColor()) &&
+       (selectedCards[1]->getColor() == selectedCards[2]->getColor())) {
+        colorSame = true;
+    }
+    
+    bool colorDifferent = false;
+    if((selectedCards[0]->getColor() != selectedCards[1]->getColor()) &&
+       (selectedCards[1]->getColor() != selectedCards[2]->getColor()) &&
+       (selectedCards[2]->getColor() != selectedCards[0]->getColor())) {
+        colorDifferent = true;
+    }
+    
+    //check number
+    bool numSame = false;
+    if((selectedCards[0]->getNumber() == selectedCards[1]->getNumber()) &&
+       (selectedCards[1]->getNumber() == selectedCards[2]->getNumber())) {
+        numSame = true;
+    }
+    
+    bool numDifferent = false;
+    if((selectedCards[0]->getNumber() != selectedCards[1]->getNumber()) &&
+       (selectedCards[1]->getNumber() != selectedCards[2]->getNumber()) &&
+       (selectedCards[2]->getNumber() != selectedCards[0]->getNumber())) {
+        numDifferent = true;
+    }
+    
+    //check shape
+    bool shapeSame = false;
+    if((selectedCards[0]->getShape() == selectedCards[1]->getShape()) &&
+       (selectedCards[1]->getShape() == selectedCards[2]->getShape())) {
+        shapeSame = true;
+    }
+    
+    bool shapeDifferent = false;
+    if((selectedCards[0]->getShape() != selectedCards[1]->getShape()) &&
+       (selectedCards[1]->getShape() != selectedCards[2]->getShape()) &&
+       (selectedCards[2]->getShape() != selectedCards[0]->getShape())) {
+        shapeDifferent = true;
+    }
+    
+    //check shading
+    bool shadeSame = false;
+    if((selectedCards[0]->getShading() == selectedCards[1]->getShading()) &&
+       (selectedCards[1]->getShading() == selectedCards[2]->getShading())) {
+        shadeSame = true;
+    }
+    
+    bool shadeDifferent = false;
+    if((selectedCards[0]->getShading() != selectedCards[1]->getShading()) &&
+       (selectedCards[1]->getShading() != selectedCards[2]->getShading()) &&
+       (selectedCards[2]->getShading() != selectedCards[0]->getShading())) {
+        shadeDifferent = true;
+    }
+    
+    //if all traits are either different or the same, return true
+    if((colorSame || colorDifferent) && (numSame || numDifferent) &&
+       (shapeSame || shapeDifferent) && (shadeSame || shadeDifferent)) {
+        return true;
+    }
+    
+    //if the conditions don't match, return false
+    return true;
 }

@@ -12,6 +12,7 @@
 #include <iostream>
 #include <vector>
 #include "GameState.h"
+#include "CardObject.h"
 
 class GameObject;
 
@@ -39,6 +40,7 @@ private:
     std::vector<GameObject*> m_gameObjects;
     void loadRandomInitialCards();
     std::vector<GameObject*> m_leftCards;
+    bool checkSet(std::vector<CardObject*>);
 };
 
 
