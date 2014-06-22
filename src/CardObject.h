@@ -34,6 +34,8 @@ private:
     shape shape;
     shading shading;
     
+    bool isInside(Vector2D pos);
+    
     bool isSelected; //the card has been selected
 };
 

@@ -16,7 +16,7 @@ enum mouse_buttons
 
 class InputHandler {
 public:
-	InputHandler() : m_mousePosition(0, 0) {}
+	InputHandler() : m_mousePosition(0, 0), m_mouseClickPos(0, 0) {}
 	~InputHandler() {}
 
 	//singleton
@@ -33,9 +33,17 @@ public:
 		return m_mouseButtonStates[buttonNumber];
 	}
 	
+    bool getMouseInitial() {
+        return m_firstEventMousePress;
+    }
+    
 	Vector2D getMousePosition() {
 		return m_mousePosition;
 	}
+    
+    Vector2D getMouseClickPosition() {
+        return m_mouseClickPos;
+    }
 
     void initializeMouse();
 	void update();
@@ -50,6 +58,11 @@ private:
 	Vector2D m_mousePosition;
 
 	Uint8* m_keystates;
+    
+    bool m_initialMousePress;
+    bool m_firstEventMousePress;
+    
+    Vector2D m_mouseClickPos;
 
 	//mouse events
 	void onMouseMove(SDL_Event& event);

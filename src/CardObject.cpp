@@ -14,6 +14,7 @@ CardObject::CardObject(const LoaderParams *pParams, ::color t_color, ::shading t
     shading = t_shading;
     shape = t_shape;
     number = t_number;
+    isSelected = false;
 }
 
 void CardObject::draw() {
@@ -22,8 +23,12 @@ void CardObject::draw() {
 
 void CardObject::update() {
     //update
-	if (this->isMouseInBounds()) {
-		// mouse interior to card
+	if (InputHandler::Instance()->getMouseInitial()) {
+		// check mouse potition
+        if(isInside(InputHandler::Instance()->getMouseClickPosition())) {
+            //change from selected to not selected
+            isSelected = !isSelected;
+        }
 	}
 	else {
 		// mouse exterior
@@ -42,6 +47,22 @@ void CardObject::setSelected(bool selected) {
     isSelected = selected;
     
     if(selected) {
-        
+        //where the card would show its selected state
     }
+}
+
+bool CardObject::isInside(Vector2D pos) {
+    
+    //check to see if it is inside
+    Vector2D currPos = this->getPosition();
+    
+    //check x
+    if((pos.getX() > currPos.getX()) && (pos.getX() < (currPos.getX() + this->getWidth()))) {
+        //now check y
+        if((pos.getY() > currPos.getY()) && (pos.getY() < (currPos.getY() + this->getHeight()))) {
+            return true;
+        }
+    }
+    
+    return false;
 }
