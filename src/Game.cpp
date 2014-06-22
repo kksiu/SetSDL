@@ -21,6 +21,9 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
     //init input handler
     InputHandler::Instance()->initializeMouse();
     
+    //set seed of random
+    srand((unsigned int)std::time(NULL));
+    
     //initialize SDL
     if(SDL_Init(SDL_INIT_EVERYTHING) == 0) {
         std::cout << "SDL init success" << std::endl;
