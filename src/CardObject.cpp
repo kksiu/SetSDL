@@ -24,8 +24,6 @@ void CardObject::update() {
     //update
 	if (this->isMouseInBounds()) {
 		// mouse interior to card
-
-		this->m_position.setX(this->m_position.getX() + 1);
 	}
 	else {
 		// mouse exterior

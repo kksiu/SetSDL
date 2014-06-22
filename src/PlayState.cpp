@@ -12,8 +12,32 @@
 #include "Enums.h"
 #include "InputHandler.h"
 #include "CardObject.h"
+#include <sstream>
+#include <string>
+#include <cstdlib>
 
 const std::string PlayState::s_menuID = "PLAY";
+int CARD_WIDTH = 140;
+int CARD_HEIGHT = 90;
+int WIDTH_PADDING = 50;
+int HEIGHT_PADDING = 50;
+
+//split string methods
+std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems) {
+    std::stringstream ss(s);
+    std::string item;
+    while (std::getline(ss, item, delim)) {
+        elems.push_back(item);
+    }
+    return elems;
+}
+
+
+std::vector<std::string> split(const std::string &s, char delim) {
+    std::vector<std::string> elems;
+    split(s, delim, elems);
+    return elems;
+}
 
 
 void PlayState::update() {
@@ -35,11 +59,11 @@ bool PlayState::onEnter() {
     
     //load all the cards
     PlayState::loadCards();
+    std::cout << "Done Loading Cards" << std::endl;
     
-    //make a temporary card
-    GameObject *card = new CardObject(new LoaderParams(0, 0, 140, 90, images[0]), color::BLUE, shading::EMPTY, number::ONE, shape::OCTAGON);
+    //load random group of cards into the game (4 x 3)
+    PlayState::loadRandomInitialCards();
     
-    m_gameObjects.push_back(card);
     
     std::cout << "Entering Play State" << std::endl;
     return true;
@@ -67,13 +91,96 @@ bool PlayState::loadCards() {
             std::cout << "FAILED" << std::endl;
             return false;
         }
+        
+        //parse image to figure out what kind of properties it holds
+        std::vector<std::string> strVec = split(*p, '_');
+        
+        color colVar;
+        shading shadeVar;
+        number numVar;
+        shape shapeVar;
+        
+        if(strVec[1].compare("1") == 0) {
+            numVar = number::ONE;
+        } else if(strVec[1].compare("2") == 0) {
+            numVar = number::TWO;
+        } else {
+            numVar = number::THREE;
+        }
+        
+        if(strVec[2].compare("oct") == 0) {
+            shapeVar = shape::OCTAGON;
+        } else if(strVec[2].compare("star") == 0) {
+            shapeVar = shape::STAR;
+        } else {
+            shapeVar = shape::TRIANGLE;
+        }
+        
+        if(strVec[3].compare("empty") == 0) {
+            shadeVar = shading::EMPTY;
+        } else if(strVec[3].compare("grad") == 0) {
+            shadeVar = shading::MID;
+        } else {
+            shadeVar = shading::FULL;
+        }
+        
+        if(strVec[4].compare("blue.png") == 0) {
+            colVar = color::BLUE;
+        } else if(strVec[4].compare("green.png") == 0) {
+            colVar = color::GREEN;
+        } else {
+            colVar = color::RED;
+        }
+        
+        //now load the card object based off of the image
+        GameObject *card = new CardObject(new LoaderParams(0, 0, CARD_WIDTH, CARD_HEIGHT, *p), colVar, shadeVar, numVar, shapeVar);
+        
+        //now push the card into game objects
+        m_leftCards.push_back(card);
     }
-    
     
     std::cout << "All Images Loaded" << std::endl;
     return true;
 }
 
 void PlayState::removeTextures() {
+    
+    int sizeOfImgArr = sizeof(images) / sizeof(images[0]);
+    for(size_t i = 0; i < sizeOfImgArr; i++) {
+        TextureManager::Instance()->clearFromTextureMap(images[i]);
+    }
+}
+
+void PlayState::loadRandomInitialCards() {
+    //find the size of initial array and load random cards off of it
+    int sizeOfCardArray = (int) m_leftCards.size();
+    
+    //loop through as many cards as needed
+    for(size_t i = 0; i < INITIAL_CARDS_NUM; i++) {
+        //get a random card off of the array
+        int nextCard = rand() % sizeOfCardArray;
+        
+        CardObject* card = (CardObject*) m_leftCards[nextCard];
+        
+        //let the multiplier lay out based on where it is in for loop
+        int x_multiplier = i % 4;
+        int y_multiplier = floor(i / 4);
+        
+        //set the position of the card
+        int x = (WIDTH * .4) + ((CARD_WIDTH + WIDTH_PADDING) * x_multiplier);
+        int y = (HEIGHT * .05) + ((CARD_HEIGHT + HEIGHT_PADDING) * y_multiplier);
+        
+        //add this card to the screen
+        Vector2D position = Vector2D(x, y);
+        card->setPosition(position);
+        
+        m_gameObjects.push_back(card);
+        
+        //remove card from the left cards array
+        m_leftCards.erase(m_leftCards.begin() + nextCard);
+        
+        //remove one from card array
+        sizeOfCardArray--;
+    }
     
 }

@@ -25,6 +25,7 @@ public:
 	virtual bool isMouseInBounds();
 
 	Vector2D getPosition() { return m_position; }
+    void setPosition(Vector2D pos) { m_position = pos; };
 
 	int getWidth() { return m_width; }
 	int getHeight() { return m_height; }

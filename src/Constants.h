@@ -92,8 +92,7 @@ const std::string images[] = {"gfx/Image-card_1_oct_empty_blue.png",
     "gfx/Image-card_3_triangle_filled_red.png",
     "gfx/Image-card_3_triangle_grad_blue.png",
     "gfx/Image-card_3_triangle_grad_green.png",
-    "gfx/Image-card_3_triangle_grad_red.png",
-    "gfx/Image-card_base.png"};
+    "gfx/Image-card_3_triangle_grad_red.png"};
 
 const std::string menuButtons[] = {"gfx/MButton-Instructions.png",
     "gfx/MButton-MultiPlayer.png",
@@ -105,5 +104,7 @@ const int WIDTH = 1280;
 const int HEIGHT = 720;
 const int BUTTON_WIDTH = 400;
 const int BUTTON_HEIGHT = 100;
+
+const int INITIAL_CARDS_NUM = 16;
 
 #endif

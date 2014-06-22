@@ -37,6 +37,8 @@ public:
 private:
     static const std::string s_menuID;
     std::vector<GameObject*> m_gameObjects;
+    void loadRandomInitialCards();
+    std::vector<GameObject*> m_leftCards;
 };
 
 
