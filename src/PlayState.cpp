@@ -187,12 +187,12 @@ void PlayState::loadRandomInitialCards() {
         CardObject* card = (CardObject*) m_leftCards[nextCard];
         
         //let the multiplier lay out based on where it is in for loop
-        int x_multiplier = i % 4;
-        int y_multiplier = floor(i / 4);
+        float x_multiplier = i % 4;
+        float y_multiplier = i / 4;
         
         //set the position of the card
-        int x = (WIDTH * .4) + ((CARD_WIDTH + WIDTH_PADDING) * x_multiplier);
-        int y = (HEIGHT * .05) + ((CARD_HEIGHT + HEIGHT_PADDING) * y_multiplier);
+        float x = (WIDTH * .4) + ((CARD_WIDTH + WIDTH_PADDING) * x_multiplier);
+        float y = (HEIGHT * .05) + ((CARD_HEIGHT + HEIGHT_PADDING) * y_multiplier);
         
         //add this card to the screen
         Vector2D position = Vector2D(x, y);

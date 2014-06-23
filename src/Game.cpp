@@ -10,6 +10,7 @@
 #include "InputHandler.h"
 #include "PlayState.h"
 #include "MenuState.h"
+#include <time.h>
 
 Game *Game::s_pInstance = 0;
 
@@ -22,7 +23,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
     InputHandler::Instance()->initializeMouse();
     
     //set seed of random
-    srand((unsigned int)std::time(NULL));
+    srand((unsigned int)time(NULL));
     
     //initialize SDL
     if(SDL_Init(SDL_INIT_EVERYTHING) == 0) {
