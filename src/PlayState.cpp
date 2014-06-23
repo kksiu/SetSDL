@@ -170,7 +170,7 @@ bool PlayState::loadCards() {
 void PlayState::removeTextures() {
     
     int sizeOfImgArr = sizeof(images) / sizeof(images[0]);
-    for(size_t i = 0; i < sizeOfImgArr; i++) {
+    for(size_t i = 0; i < (unsigned int) sizeOfImgArr; i++) {
         TextureManager::Instance()->clearFromTextureMap(images[i]);
     }
 }
@@ -187,12 +187,12 @@ void PlayState::loadRandomInitialCards() {
         CardObject* card = (CardObject*) m_leftCards[nextCard];
         
         //let the multiplier lay out based on where it is in for loop
-        float x_multiplier = i % 4;
-        float y_multiplier = i / 4;
+        float x_multiplier = (float) (i % 4);
+        float y_multiplier = (float) (i / 4);
         
         //set the position of the card
-        float x = (WIDTH * .4) + ((CARD_WIDTH + WIDTH_PADDING) * x_multiplier);
-        float y = (HEIGHT * .05) + ((CARD_HEIGHT + HEIGHT_PADDING) * y_multiplier);
+        float x = (float) ((WIDTH * .4) + ((CARD_WIDTH + WIDTH_PADDING) * x_multiplier));
+        float y = (float) ((HEIGHT * .05) + ((CARD_HEIGHT + HEIGHT_PADDING) * y_multiplier));
         
         //add this card to the screen
         Vector2D position = Vector2D(x, y);
