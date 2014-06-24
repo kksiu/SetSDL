@@ -46,10 +46,17 @@ void PlayState::update() {
 	for (size_t i = 0; i < m_gameObjects.size(); i++) {
 		m_gameObjects[i]->update();
         
+        //get outline object
+        SDLGameObject *outline = (SDLGameObject*)m_outlines[i];
+        
         //check if it has been selected
         CardObject *card = (CardObject*)m_gameObjects[i];
         if(card->getSelected()) {
+            //if selected set the outline in there to visible
+            outline->setVisible(true);
             selectedCards.push_back(card);
+        } else {
+            outline->setVisible(false);
         }
 	}
     
@@ -60,6 +67,7 @@ void PlayState::update() {
         
         // TODO what to do when there is a set!
         if(isSet) {
+            std::cout << "SET" << std::endl;
         }
         
         //set selected cards back to not selected
@@ -76,6 +84,7 @@ void PlayState::render() {
     //render all the objects
     for(size_t i = 0; i < m_gameObjects.size(); i++) {
         m_gameObjects[i]->draw();
+        m_outlines[i]->draw();
     }
 }
 
@@ -84,6 +93,9 @@ bool PlayState::onEnter() {
     //load all the cards
     PlayState::loadCards();
     std::cout << "Done Loading Cards" << std::endl;
+    
+    //load outline
+    TextureManager::Instance()->load(outline, "outline", Game::Instance()->getRenderer());
     
     //load random group of cards into the game (4 x 3)
     PlayState::loadRandomInitialCards();
@@ -205,6 +217,14 @@ void PlayState::loadRandomInitialCards() {
         
         //remove one from card array
         sizeOfCardArray--;
+        
+        //load an outline for that particular index in the array
+        SDLGameObject *outline = new SDLGameObject(new LoaderParams(x, y, CARD_WIDTH, CARD_HEIGHT, "outline"));
+        
+        outline->setVisible(false);
+        
+        //push into vector
+        m_outlines.push_back(outline);
     }
     
 }
@@ -278,5 +298,5 @@ bool PlayState::checkSet(std::vector<CardObject*> selectedCards) {
     }
     
     //if the conditions don't match, return false
-    return true;
+    return false;
 }

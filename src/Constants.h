@@ -100,6 +100,8 @@ const std::string menuButtons[] = {"gfx/MButton-Instructions.png",
     "gfx/MButton-Settings.png",
     "gfx/MButton-SinglePlayer.png"};
 
+const std::string outline = "gfx/outline.png";
+
 const int WIDTH = 1280;
 const int HEIGHT = 720;
 const int BUTTON_WIDTH = 400;

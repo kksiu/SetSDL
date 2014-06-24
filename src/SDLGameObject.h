@@ -25,10 +25,14 @@ public:
 	virtual bool isMouseInBounds();
 
 	Vector2D getPosition() { return m_position; }
-    void setPosition(Vector2D pos) { m_position = pos; };
+    void setPosition(Vector2D pos) { m_position = pos; }
 
 	int getWidth() { return m_width; }
 	int getHeight() { return m_height; }
+    
+    //set visible
+    void setVisible(bool vis) { m_isVisible = vis; }
+    bool getVisible() { return m_isVisible; }
     
 protected:
     int m_width;
@@ -39,6 +43,9 @@ protected:
 	Vector2D m_position;
 	Vector2D m_velocity;
 	Vector2D m_acceleration;
+    
+    //visible or not
+    bool m_isVisible;
 };
 
 #endif /* defined(__SDLGameObject__) */

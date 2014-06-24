@@ -38,6 +38,7 @@ public:
 private:
     static const std::string s_menuID;
     std::vector<GameObject*> m_gameObjects;
+    std::vector<GameObject*> m_outlines;
     void loadRandomInitialCards();
     std::vector<GameObject*> m_leftCards;
     bool checkSet(std::vector<CardObject*>);

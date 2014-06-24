@@ -19,11 +19,16 @@ GameObject(pParams), m_position((float)pParams->getX(), (float)pParams->getY()),
     m_textureID = pParams->getTextureID();
     m_currentRow = 1;
     m_currentFrame = (int)button_state::MOUSE_OUT;
+    
+    //set visible to true
+    m_isVisible = true;
 }
 
 void SDLGameObject::draw()
 {
-    TextureManager::Instance()->drawFrame(m_textureID, (Uint32)m_position.getX(), (Uint32)m_position.getY(), m_width, m_height, m_currentRow, m_currentFrame, Game::Instance()->getRenderer());
+    if(m_isVisible) {
+        TextureManager::Instance()->drawFrame(m_textureID, (Uint32)m_position.getX(), (Uint32)m_position.getY(), m_width, m_height, m_currentRow, m_currentFrame, Game::Instance()->getRenderer());
+    }
 }
 
 void SDLGameObject::update() {
