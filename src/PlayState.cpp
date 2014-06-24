@@ -219,7 +219,7 @@ void PlayState::loadRandomInitialCards() {
         sizeOfCardArray--;
         
         //load an outline for that particular index in the array
-        SDLGameObject *outline = new SDLGameObject(new LoaderParams(x, y, CARD_WIDTH, CARD_HEIGHT, "outline"));
+        SDLGameObject *outline = new SDLGameObject(new LoaderParams((int)x, (int)y, CARD_WIDTH, CARD_HEIGHT, "outline"));
         
         outline->setVisible(false);
         
