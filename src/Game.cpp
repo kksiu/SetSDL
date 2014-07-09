@@ -10,6 +10,7 @@
 #include "InputHandler.h"
 #include "PlayState.h"
 #include "MenuState.h"
+#include "SDL_ttf.h"
 #include <time.h>
 
 Game *Game::s_pInstance = 0;
@@ -39,12 +40,19 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
             if(m_pRenderer != 0) {
                 std::cout << "renderer creation success" << std::endl;
                 
+                //initialize true type font
+				if(TTF_Init() != 0)
+				{
+                    std::cout << "TTF_Init creation failed" << std::endl;
+					return false;
+				}
+                
+                //set renderer to white
                 SDL_SetRenderDrawColor(m_pRenderer, 255, 255, 255, 255);
                 
                 //State machine
                 m_pGameStateMachine = new GameStateMachine();
                 
-                // TODO ADD MENU STATE MACHINE
                 //for now, going to go into play state
                 m_pGameStateMachine->changeState(new MenuState());
                 

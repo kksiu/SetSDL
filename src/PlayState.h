@@ -13,6 +13,7 @@
 #include <vector>
 #include "GameState.h"
 #include "CardObject.h"
+#include "TextObject.h"
 
 class GameObject;
 
@@ -42,6 +43,9 @@ private:
     void loadRandomInitialCards();
     std::vector<GameObject*> m_leftCards;
     bool checkSet(std::vector<CardObject*>);
+    
+    //true type font
+    TextObject *p1Score;
 };
 
 

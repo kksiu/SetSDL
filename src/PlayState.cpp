@@ -15,6 +15,7 @@
 #include <string>
 #include <cstdlib>
 
+
 const std::string PlayState::s_menuID = "PLAY";
 int CARD_WIDTH = 140;
 int CARD_HEIGHT = 90;
@@ -76,6 +77,9 @@ void PlayState::update() {
         }
     }
     
+    //update text
+    p1Score->update();
+    
     //remove vector
     selectedCards.clear();
 }
@@ -86,6 +90,9 @@ void PlayState::render() {
         m_gameObjects[i]->draw();
         m_outlines[i]->draw();
     }
+    
+    //render text
+    p1Score->draw();
 }
 
 bool PlayState::onEnter() {
@@ -100,6 +107,8 @@ bool PlayState::onEnter() {
     //load random group of cards into the game (4 x 3)
     PlayState::loadRandomInitialCards();
     
+    //insert score
+    p1Score = new TextObject("Player 1", TTF_OpenFont("font/lazy.ttf", 25), {12, 14, 28, 100}, {0, 0, 100, 25});
     
     std::cout << "Entering Play State" << std::endl;
     return true;
