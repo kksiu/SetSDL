@@ -46,6 +46,18 @@ public:
         SDL_DestroyTexture(mTexture);
     }
     
+    virtual void setText(std::string nText) {
+        text = nText;
+    }
+    
+    virtual void setColor(SDL_Color nColor) {
+        color = nColor;
+    }
+    
+    virtual void setFont(TTF_Font *nFont) {
+        font = nFont;
+    }
+    
 private:
     std::string text;
     TTF_Font *font;

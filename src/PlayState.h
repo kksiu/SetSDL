@@ -13,7 +13,7 @@
 #include <vector>
 #include "GameState.h"
 #include "CardObject.h"
-#include "TextObject.h"
+#include "ScoreText.h"
 
 class GameObject;
 
@@ -45,7 +45,7 @@ private:
     bool checkSet(std::vector<CardObject*>);
     
     //true type font
-    TextObject *p1Score;
+    ScoreText *p1Score;
 };
 
 

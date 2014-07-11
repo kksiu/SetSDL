@@ -64,11 +64,23 @@ void PlayState::update() {
     //check to see if there are at least 3 cards that have been selected
     if(selectedCards.size() >= 3) {
         //check to see if the cards are a set
-        bool isSet = PlayState::checkSet(selectedCards);
-        
-        // TODO what to do when there is a set!
-        if(isSet) {
+        if(PlayState::checkSet(selectedCards)) {
             std::cout << "SET" << std::endl;
+            p1Score->score = p1Score->score + 3;
+            
+            //reload the cards
+            for(size_t i = 0; i < selectedCards.size(); i++) {
+                //get a random card off of the array
+                int nextCard = rand() % (int) m_leftCards.size();
+                
+                CardObject* card = selectedCards[i];
+                
+                //change texture id of the card
+                card->setTextureID(((SDLGameObject*)m_leftCards[i])->getTextureID());
+                
+                //remove that card from left cards
+                m_leftCards.erase(m_leftCards.begin() + nextCard);
+            }
         }
         
         //set selected cards back to not selected
@@ -108,7 +120,7 @@ bool PlayState::onEnter() {
     PlayState::loadRandomInitialCards();
     
     //insert score
-    p1Score = new TextObject("Player 1", TTF_OpenFont("font/lazy.ttf", 25), {12, 14, 28, 100}, {0, 0, 100, 25});
+    p1Score = new ScoreText(0, "Player 1", TTF_OpenFont("font/lazy.ttf", 50), {12, 14, 28, 100}, {0, 0, 200, 50});
     
     std::cout << "Entering Play State" << std::endl;
     return true;

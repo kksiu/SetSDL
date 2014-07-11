@@ -34,6 +34,10 @@ public:
     void setVisible(bool vis) { m_isVisible = vis; }
     bool getVisible() { return m_isVisible; }
     
+    //texture id
+    std::string getTextureID() { return m_textureID; }
+    void setTextureID(std::string nTextureID) { m_textureID = nTextureID; }
+    
 protected:
     int m_width;
     int m_height;
